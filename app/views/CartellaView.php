@@ -5,10 +5,8 @@ class CartellaView extends ViewAbstract
 
     public function output()
     {
-        /** @var Cartella $cartella */
-        $cartella = $this->params['cartella'];
-        $righe = $cartella->getRighe();
-
+        /** @var Cartella[] $cartelle */
+        $cartelle = $this->params['cartelle'];
         $html = <<<EOS
 <html>
 <head>
@@ -16,20 +14,12 @@ class CartellaView extends ViewAbstract
 </head>
 <body>
 <h1>Generazione cartella per tombola</h1>
-<table>
 EOS;
-
-        foreach ($righe as $riga) {
-            $html .= "<tr>\n";
-            $celle = $this->getCelleFromNumeri($riga->getNumeri());
-            foreach ($celle as $cella) {
-                $text = $cella ?: "&nbsp;";
-                $html .= "<td>$text</td>\n";
-            }
-            $html .= "</tr>\n";
+        foreach ($cartelle as $cartella) {
+            $html .= $this->getTableFromCartella($cartella);
         }
+
         $html .= <<<EOS
-</table>
 </body>
 </html>
 EOS;
@@ -48,6 +38,24 @@ EOS;
             $out[$i] = $num;
         }
         return $out;
+    }
+
+    private function getTableFromCartella(Cartella $cartella)
+    {
+        $html = '<table>' . PHP_EOL;
+        $righe = $cartella->getRighe();
+        foreach ($righe as $riga) {
+            $html .= "<tr>\n";
+            $celle = $this->getCelleFromNumeri($riga->getNumeri());
+            foreach ($celle as $cella) {
+                $text = $cella ?: "&nbsp;";
+                $html .= "<td>$text</td>\n";
+            }
+            $html .= "</tr>\n";
+        }
+        $html .= '</table>' . PHP_EOL;
+
+        return $html;
     }
 
 }
