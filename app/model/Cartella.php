@@ -1,5 +1,5 @@
 <?php
-
+namespace model;
 class Cartella
 {
     /** @var RigaCartella[] */

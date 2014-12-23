@@ -1,5 +1,7 @@
 <?php
 
+use \model\Cartella;
+
 class Application
 {
     public function run()
