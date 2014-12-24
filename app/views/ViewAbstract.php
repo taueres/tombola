@@ -1,4 +1,5 @@
 <?php
+namespace views;
 
 abstract class ViewAbstract implements ViewInterface
 {
@@ -14,4 +15,4 @@ abstract class ViewAbstract implements ViewInterface
         $this->params[$name] = $value;
     }
 
-} 
+}

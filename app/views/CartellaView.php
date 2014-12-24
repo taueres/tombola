@@ -1,4 +1,7 @@
 <?php
+namespace views;
+
+use model\Cartella;
 
 class CartellaView extends ViewAbstract
 {

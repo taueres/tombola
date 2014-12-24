@@ -1,6 +1,7 @@
 <?php
 
-use \model\Cartella;
+use model\Cartella;
+use views\CartellaView;
 
 class Application
 {
